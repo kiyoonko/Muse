@@ -11,14 +11,12 @@ var evening;
 var timeOfDay = 0;
 
 //facebook API
-window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '577670782440512',
-      xfbml      : true,
-      version    : 'v2.8'
-    });
-    FB.AppEvents.logPageView();
-  };
+  FB.init({
+    appId      : '577670782440512',
+    xfbml      : true,
+    version    : 'v2.8'
+  });
+  FB.AppEvents.logPageView();
 
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
