@@ -78,6 +78,7 @@ app.post('/webhook/', function (req, res) {
                 }
                 else {
                   mood = JSON.stringify(response, null, 2).docEmotions.anger
+                  console.log(mood)
                   sendTextMessage('hi')
                   console.log(JSON.stringify(response, null, 2));
                 }
