@@ -63,6 +63,10 @@ app.post('/webhook/', function (req, res) {
         		case 0:
         			sendTextMessage(sender, "Hello! How is your morning?")
         			timeOfDay = 1
+        			console.log(timeOfDay, text, morning, afternoon, evening, active)
+        			break;
+        		case 1:
+        			morning = text
               var parameters = {
                 // url: 'http://www.charliechaplin.com/en/synopsis/articles/29-The-Great-Dictator-s-Speech'
                 text: text
@@ -73,6 +77,7 @@ app.post('/webhook/', function (req, res) {
                   console.log('error:', err);
                 else
                   sendTextMessage(sender, "Your mood is: " + JSON.stringify(response, null, 2))
+                  console.log(JSON.stringify(response, null, 2));
               });
 
               alchemy_language.keywords(parameters, function (err, response) {
@@ -82,10 +87,6 @@ app.post('/webhook/', function (req, res) {
                   sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
                   console.log(JSON.stringify(response, null, 2));
               });
-        			console.log(timeOfDay, text, morning, afternoon, evening, active)
-        			break;
-        		case 1:
-        			morning = text
         			sendTextMessage(sender, "Hey! How is your afternoon?")
         			timeOfDay = 2
         			console.log(timeOfDay, text, morning, afternoon, evening, active)
