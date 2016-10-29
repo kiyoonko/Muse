@@ -47,6 +47,10 @@ app.post('/webhook/', function (req, res) {
         else if(Boolean(active)){
         	sendTextMessage(sender, "WORKS!")
         }
+        else if(text === 'Thanks MuseBot'){
+        	sendTextMessage(sender, "Enjoy the music!")
+        	active = 0
+        }
         else{
 			sendTextMessage(sender, "Please say 'Hi MuseBot' to get started.")
         }
