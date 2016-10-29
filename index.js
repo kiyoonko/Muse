@@ -72,7 +72,7 @@ app.post('/webhook/', function (req, res) {
                 text: text
               };
 
-              alchemy_language.emotions(parameters, function (err, response) {
+              alchemy_language.emotion(parameters, function (err, response) {
                 if (err) {
                   console.log('error:', err);
                 }
