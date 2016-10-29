@@ -77,18 +77,26 @@ app.post('/webhook/', function (req, res) {
                   console.log('error:', err);
                 }
                 else {
-                  mood = JSON.parse(response)
-                  console.log(mood)
-                  sendTextMessage(mood.docEmotions)
-                  console.log(JSON.stringify(response, null, 2));
+                  var obj = JSON.stringify(response, null, 2)
+                  console.log(obj)
+                  sendTextMessage(obj)
+                  // console.log(JSON.stringify(response, null, 2));
                 }
               });
 
-              setTimeout(()=>{
-                sendTextMessage(sender, "Your mood is: " + mood, 2000)
-              })
         			sendTextMessage(sender, "Hey! How is your afternoon?")
         			timeOfDay = 2
+              alchemy_language.emotion(afternoon, function (err, response) {
+                if (err) {
+                  console.log('error:', err);
+                }
+                else {
+                  var obj = JSON.stringify(response, null, 2)
+                  console.log(obj)
+                  sendTextMessage(obj)
+                  // console.log(JSON.stringify(response, null, 2));
+                }
+              });
         			console.log(timeOfDay, text, morning, afternoon, evening, active)
         			break;
         		case 2:
