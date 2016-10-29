@@ -50,7 +50,6 @@ app.post('/webhook/', function (req, res) {
       if (event.message && event.message.text) {
         let text = event.message.text
         if (text === 'Hi MuseBot' && !Boolean(active)) {
-        	console.log(timeOfDay, text, morning, afternoon, evening, active)
             active = 1
         }
         if(text === 'Thanks MuseBot'){
@@ -63,7 +62,6 @@ app.post('/webhook/', function (req, res) {
         		case 0:
         			sendTextMessage(sender, "Hello! How is your morning?")
         			timeOfDay = 1
-        			console.log(timeOfDay, text, morning, afternoon, evening, active)
         			break;
         		case 1:
         			morning = text
@@ -78,13 +76,12 @@ app.post('/webhook/', function (req, res) {
                 }
                 else {
                   sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
-                  console.log(JSON.stringify(response, null, 2));
+                  console.log(JSON.parse(response));
                   }
               });
 
         			sendTextMessage(sender, "Hey! How is your afternoon?")
         			timeOfDay = 2
-        			console.log(timeOfDay, text, morning, afternoon, evening, active)
         			break;
         		case 2:
         			afternoon = text
@@ -98,6 +95,7 @@ app.post('/webhook/', function (req, res) {
                 else {
                   sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
                   console.log(JSON.stringify(response, null, 2));
+                  console.log(JSON.parse(response));
                   }
               });
 
@@ -118,6 +116,7 @@ app.post('/webhook/', function (req, res) {
                 else {
                   sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
                   console.log(Object.keys(JSON.stringify(response, null, 2)));
+                  console.log(JSON.parse(response));
                   }
               });
 
