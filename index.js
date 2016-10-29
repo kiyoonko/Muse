@@ -41,7 +41,7 @@ app.post('/webhook/', function (req, res) {
       if (event.message && event.message.text) {
         let text = event.message.text
         if (text === 'Hi MuseBot' && !Boolean(active)) {
-            return message.CreateReplyMessage("Hello " + message.From.Name +". How are you doing today?")
+            sendTextMessage(sender, "Hello " + text.From.Name +". How are you doing today?")
             active = 1
             continue
         }
