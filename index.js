@@ -50,6 +50,7 @@ app.post('/webhook/', function (req, res) {
       if (event.message && event.message.text) {
         let text = event.message.text
         if (text === 'Hi MuseBot' && !Boolean(active)) {
+        	console.log(timeOfDay, text, morning, afternoon, evening, active)
             active = 1
         }
         if(text === 'Thanks MuseBot'){
@@ -60,24 +61,28 @@ app.post('/webhook/', function (req, res) {
         else if(Boolean(active)){
         	switch(timeOfDay){
         		case 0:
-        			sendTextMessage(sender, "Hello " + sender +". How is your morning?")
+        			sendTextMessage(sender, "Hello! How is your morning?")
         			timeOfDay = 1
+        			console.log(timeOfDay, text, morning, afternoon, evening, active)
         			break;
         		case 1:
         			morning = text
-        			sendTextMessage(sender, "Hey " + sender +"! How is your afternoon?")
+        			sendTextMessage(sender, "Hey! How is your afternoon?")
         			timeOfDay = 2
+        			console.log(timeOfDay, text, morning, afternoon, evening, active)
         			break;
         		case 2:
         			afternoon = text
-        			sendTextMessage(sender, "Good evening " + sender +". How is your evening?")
+        			sendTextMessage(sender, "Good evening~ How is your evening?")
         			timeOfDay = 3
+        			console.log(timeOfDay, text, morning, afternoon, evening, active)
         			break;
         		case 3:
         			evening = text
         			sendTextMessage(sender, "Hmm... I see. Okay well here is a playlist created just for you based on your day except nah (At least not yet). Here are your responses - Morning: "+morning+" | Afternoon: "+afternoon+" | Evening "+evening+". Hope you enjoy the music!")
         			timeOfDay = 0
 					active = 0
+        			console.log(timeOfDay, text, morning, afternoon, evening, active)
         			break;
         	}
         }
@@ -89,7 +94,7 @@ app.post('/webhook/', function (req, res) {
     res.sendStatus(200)
   })
 
-const token = "EAAINY3XI1EABAGqj0Sxg57Sie8sJLSQRKdAhfqMhxPhHB0fkb1gy9pfH7xnmZCmxNYb9Dv69DeY0GijQsEzDZCdgApZBxp0SLqIhtE8m9ZCZCGETFmBQcXiX9cXZBCn7msaxk7h5ty8IYkpg4kaM2b63s0OYQyNtzZCIps38QTZAEgZDZD"
+const token = "EAAINY3XI1EABAA82aksmY4P7HYrns3SqZArQqcpv06ghQNeQ8hsnkU0sXVGrzPaOrmh6juZCqrZCoSZCHn3zV0otvKmPcaG8mI1ZCXrImDa9NeljbfNPZCJ7xf5EZBXC0LFrNJvyRbe09hT7P2RGLZCHtDtrKAyT0xi0dPxUntANIAZDZD"
 
 function sendTextMessage(sender, text) {
     let messageData = { text:text }
@@ -110,7 +115,6 @@ function sendTextMessage(sender, text) {
         }
     })
 }
-
 
 
 var parameters = {
