@@ -1,20 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
- @kiyoonko
- Unwatch 3
-  Star 0
- Fork 0 kiyoonko/Muse
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Pulse  Graphs  Settings
-Branch: master Find file Copy pathMuse/index.js
-45385a2  5 hours ago
-@kiyoonko kiyoonko Customized text for conversation 3 day system base case
-1 contributor
-RawBlameHistory     
-109 lines (96 sloc)  3.21 KB
 'use strict'
 
 const express = require('express')
@@ -121,7 +104,3 @@ function sendTextMessage(sender, text) {
         }
     })
 }
-
-
-Contact GitHub API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Security Status Help
