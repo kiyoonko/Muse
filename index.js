@@ -77,9 +77,9 @@ app.post('/webhook/', function (req, res) {
                   console.log('error:', err);
                 }
                 else {
-                  mood = response.body
+                  mood = JSON.parse(response)
                   console.log(mood)
-                  sendTextMessage('hi')
+                  sendTextMessage(mood.docEmotions)
                   console.log(JSON.stringify(response, null, 2));
                 }
               });
