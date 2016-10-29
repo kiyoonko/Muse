@@ -80,6 +80,16 @@ app.post('/webhook/', function (req, res) {
                   console.log(JSON.stringify(response, null, 2));
               });
 
+        			sendTextMessage(sender, "Hey! How is your afternoon?")
+        			timeOfDay = 2
+        			console.log(timeOfDay, text, morning, afternoon, evening, active)
+        			break;
+        		case 2:
+        			afternoon = text
+              var parameters = {
+                // url: 'http://www.charliechaplin.com/en/synopsis/articles/29-The-Great-Dictator-s-Speech'
+                text: text
+              };
               alchemy_language.keywords(parameters, function (err, response) {
                 if (err)
                   console.log('error:', err);
@@ -87,18 +97,24 @@ app.post('/webhook/', function (req, res) {
                   sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
                   console.log(JSON.stringify(response, null, 2));
               });
-        			sendTextMessage(sender, "Hey! How is your afternoon?")
-        			timeOfDay = 2
-        			console.log(timeOfDay, text, morning, afternoon, evening, active)
-        			break;
-        		case 2:
-        			afternoon = text
         			sendTextMessage(sender, "Good evening~ How is your evening?")
         			timeOfDay = 3
         			console.log(timeOfDay, text, morning, afternoon, evening, active)
         			break;
         		case 3:
         			evening = text
+              var parameters = {
+                // url: 'http://www.charliechaplin.com/en/synopsis/articles/29-The-Great-Dictator-s-Speech'
+                text: text
+              };
+
+              alchemy_language.emotion(parameters, function (err, response) {
+                if (err)
+                  console.log('error:', err);
+                else
+                  sendTextMessage(sender, "Your mood is: " + JSON.stringify(response, null, 2))
+                  console.log(JSON.stringify(response, null, 2));
+              });
         			sendTextMessage(sender, "Hmm... I see. Okay well here is a playlist created just for you based on your day except nah (At least not yet). Here are your responses - Morning: "+morning+" | Afternoon: "+afternoon+" | Evening "+evening+". Hope you enjoy the music!")
         			timeOfDay = 0
 					active = 0
