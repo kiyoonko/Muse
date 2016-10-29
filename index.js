@@ -5,6 +5,10 @@ const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
 var active = 0
+var morning;
+var afternoon;
+var evening;
+var timeOfDay = 0;
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -41,15 +45,35 @@ app.post('/webhook/', function (req, res) {
       if (event.message && event.message.text) {
         let text = event.message.text
         if (text === 'Hi MuseBot' && !Boolean(active)) {
-            sendTextMessage(sender, "Hello " + sender +". How are you doing today?")
             active = 1
         }
-        else if(text === 'Thanks MuseBot'){
+        if(text === 'Thanks MuseBot'){
         	sendTextMessage(sender, "Enjoy the music!")
         	active = 0
         }
         else if(Boolean(active)){
-        	sendTextMessage(sender, "WORKS!")
+        	switch(timeOfDay){
+        		case 0:
+        			sendTextMessage(sender, "Hello " + sender +". How is your morning?")
+        			timeOfDay = 1
+        			break;
+        		case 1:
+        			morning = text
+        			sendTextMessage(sender, "Hey " + sender +"! How is your afternoon?")
+        			timeOfDay = 2
+        			break;
+        		case 2:
+        			afternoon = text
+        			sendTextMessage(sender, "Good evening " + sender +". How is your evening?")
+        			timeOfDay = 3
+        			break;
+        		case 3:
+        			evening = text
+        			sendTextMessage(sender, "Hmm... I see. Okay well here is a playlist created just for you based on your day except nah (At least not yet). Here are your responses - Morning: "+morning+" | Afternoon: "+afternoon+" | Evening "+evening+". Hope you enjoy the music!")
+        			timeOfDay = 0
+					active = 0;
+        			break;
+        	}
         }
         else{
 			sendTextMessage(sender, "Please say 'Hi MuseBot' to get started.")
