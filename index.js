@@ -116,7 +116,8 @@ app.post('/webhook/', function (req, res) {
                   console.log('error:', err);
                 }
                 else {
-                  sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
+                  sendTextMessage(sender, "Your key words are: " + Object.Keys(JSON.stringify(response, null, 2)))
+                  sendTextMessage(sender, "Your key words are: " + Object.Values(JSON.stringify(response, null, 2)))
                   console.log(JSON.stringify(response, null, 2));
                   }
               });
