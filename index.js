@@ -4,7 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
-const active = 0
+var active = 0
 
 app.set('port', (process.env.PORT || 5000))
 
