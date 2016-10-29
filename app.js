@@ -5,9 +5,9 @@ const express = require('express')
 const app = express()
 const morgan = require('morgan')
 const mongoose = require('mongoose')
-const router = require('./config/routes')
+const router = require('./db/config/routes')
 const bodyParser = require('body-parser')
-const CoSpace = require('./models/message.js')
+const Message = require('./db/models/message.js')
 
 // MIDDLEWARE
 // plugin morgan for debugging information
