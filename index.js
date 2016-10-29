@@ -72,20 +72,14 @@ app.post('/webhook/', function (req, res) {
               };
 
               alchemy_language.emotion(parameters, function (err, response) {
-                if (err)
+                if (err) {
                   console.log('error:', err);
-                else
-                  sendTextMessage(sender, "Your mood is: " + JSON.stringify(response, null, 2))
-                  console.log(JSON.stringify(response, null, 2));
-              });
-
-              alchemy_language.keywords(parameters, function (err, response) {
-                if (err)
-                  console.log('error:', err);
+                }
                 else {
-                  sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
+                  sendTextMessage(sender, "Your mood is: " + JSON.stringify(response, null, 2))
+                  sendTextMessage('hi')
                   console.log(JSON.stringify(response, null, 2));
-                  }
+                }
               });
 
         			sendTextMessage(sender, "Hey! How is your afternoon?")
@@ -98,23 +92,13 @@ app.post('/webhook/', function (req, res) {
                 text: text
               };
               alchemy_language.keywords(parameters, function (err, response) {
-                if (err)
+                if (err) {
                   console.log('error:', err);
+                }
                 else {
                   sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
                   console.log(JSON.stringify(response, null, 2));
                   }
-              });
-
-              alchemy_language.emotion(parameters, function (err, response) {
-                if (err) {
-                  console.log('error:', err);
-                  sendTextMessage(sender, "error")
-                }
-                else {
-                  sendTextMessage(sender, "Your mood is: " + JSON.stringify(response, null, 2))
-                  console.log(JSON.stringify(response, null, 2));
-                }
               });
 
         			sendTextMessage(sender, "Good evening~ How is your evening?")
@@ -128,11 +112,13 @@ app.post('/webhook/', function (req, res) {
               };
 
               alchemy_language.emotion(parameters, function (err, response) {
-                if (err)
+                if (err) {
                   console.log('error:', err);
-                else
+                }
+                else {
                   sendTextMessage(sender, "Your mood is: " + JSON.stringify(response, null, 2))
                   console.log(JSON.stringify(response, null, 2));
+              }
               });
         			sendTextMessage(sender, "Hmm... I see. Okay well here is a playlist created just for you based on your day except nah (At least not yet). Here are your responses - Morning: "+morning+" | Afternoon: "+afternoon+" | Evening "+evening+". Hope you enjoy the music!")
         			timeOfDay = 0
