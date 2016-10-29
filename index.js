@@ -4,6 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
+const active = 0
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -39,11 +40,17 @@ app.post('/webhook/', function (req, res) {
       let sender = event.sender.id
       if (event.message && event.message.text) {
         let text = event.message.text
-        if (text === 'Generic') {
-            sendGenericMessage(sender)
+        if (text == 'Hi MuseBot' && !Boolean(active)) {
+            sendTextMessage(sender, "Hello " + message.From.Name +". How are you doing today?")
+            active = 1
             continue
         }
-        sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+        else if(Boolean(active)){
+        	sendTextMessage(sender, "WORKS!")
+        }
+        else{
+			sendTextMessage(sender, "Please say 'Hi MuseBot' to get started.")
+        }
       }
       if (event.postback) {
         let text = JSON.stringify(event.postback)
