@@ -46,6 +46,7 @@ app.post('/webhook/', function (req, res) {
         let text = event.message.text
         if (text === 'Hi MuseBot' && !Boolean(active)) {
             active = 1
+            console.log(timeOfDay, active)
         }
         if(text === 'Thanks MuseBot'){
         	sendTextMessage(sender, "Enjoy the music!")
@@ -57,26 +58,26 @@ app.post('/webhook/', function (req, res) {
         		case 0:
         			sendTextMessage(sender, "Hello! How is your morning?")
         			timeOfDay = 1
-        			console.log(timeOfDay, active)
+        			console.log(timeOfDay, morning, afternoon, evening, active)
         			break;
         		case 1:
         			morning = text
         			sendTextMessage(sender, "Hey! How is your afternoon?")
         			timeOfDay = 2
-        			console.log(timeOfDay, active)
+        			console.log(timeOfDay, morning, afternoon, evening, active)
         			break;
         		case 2:
         			afternoon = text
         			sendTextMessage(sender, "Good evening~ How is your evening?")
         			timeOfDay = 3
-        			console.log(timeOfDay, active)
+        			console.log(timeOfDay, morning, afternoon, evening, active)
         			break;
         		case 3:
         			evening = text
         			sendTextMessage(sender, "Hmm... I see. Okay well here is a playlist created just for you based on your day except nah (At least not yet). Here are your responses - Morning: "+morning+" | Afternoon: "+afternoon+" | Evening "+evening+". Hope you enjoy the music!")
         			timeOfDay = 0
 					active = 0
-					console.log(timeOfDay, active)
+					console.log(timeOfDay, morning, afternoon, evening, active)
         			break;
         	}
         }
