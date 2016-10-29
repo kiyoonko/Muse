@@ -1,3 +1,20 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @kiyoonko
+ Unwatch 3
+  Star 0
+ Fork 0 kiyoonko/Muse
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Pulse  Graphs  Settings
+Branch: master Find file Copy pathMuse/index.js
+45385a2  5 hours ago
+@kiyoonko kiyoonko Customized text for conversation 3 day system base case
+1 contributor
+RawBlameHistory     
+109 lines (96 sloc)  3.21 KB
 'use strict'
 
 const express = require('express')
@@ -5,10 +22,10 @@ const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
 var active = 0
-var morning
-var afternoon
-var evening
-var timeOfDay = 0
+var morning;
+var afternoon;
+var evening;
+var timeOfDay = 0;
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -55,17 +72,17 @@ app.post('/webhook/', function (req, res) {
         else if(Boolean(active)){
         	switch(timeOfDay){
         		case 0:
-        			sendTextMessage(sender, "Hello! How is your morning?")
+        			sendTextMessage(sender, "Hello " + sender +". How is your morning?")
         			timeOfDay = 1
         			break;
         		case 1:
         			morning = text
-        			sendTextMessage(sender, "Hey! How is your afternoon?")
+        			sendTextMessage(sender, "Hey " + sender +"! How is your afternoon?")
         			timeOfDay = 2
         			break;
         		case 2:
         			afternoon = text
-        			sendTextMessage(sender, "Good evening~ How is your evening?")
+        			sendTextMessage(sender, "Good evening " + sender +". How is your evening?")
         			timeOfDay = 3
         			break;
         		case 3:
@@ -106,3 +123,5 @@ function sendTextMessage(sender, text) {
 }
 
 
+Contact GitHub API Training Shop Blog About
+© 2016 GitHub, Inc. Terms Privacy Security Status Help
