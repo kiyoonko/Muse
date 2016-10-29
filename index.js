@@ -43,7 +43,6 @@ app.post('/webhook/', function (req, res) {
         if (text === 'Hi MuseBot' && !Boolean(active)) {
             sendTextMessage(sender, "Hello " + sender +". How are you doing today?")
             active = 1
-            continue
         }
         else if(Boolean(active)){
         	sendTextMessage(sender, "WORKS!")
@@ -51,11 +50,6 @@ app.post('/webhook/', function (req, res) {
         else{
 			sendTextMessage(sender, "Please say 'Hi MuseBot' to get started.")
         }
-      }
-      if (event.postback) {
-        let text = JSON.stringify(event.postback)
-        sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
-        continue
       }
     }
     res.sendStatus(200)
