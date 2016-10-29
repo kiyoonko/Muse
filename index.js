@@ -9,6 +9,11 @@ var morning;
 var afternoon;
 var evening;
 var timeOfDay = 0;
+var watson = require('watson-developer-cloud');
+var alchemy_language = watson.alchemy_language({
+  api_key: 'eb0ddf47c65932a16f7e44101448025abee42655'
+});
+var sentiment = ''
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -58,6 +63,25 @@ app.post('/webhook/', function (req, res) {
         		case 0:
         			sendTextMessage(sender, "Hello! How is your morning?")
         			timeOfDay = 1
+              var parameters = {
+                // url: 'http://www.charliechaplin.com/en/synopsis/articles/29-The-Great-Dictator-s-Speech'
+                text: text
+              };
+
+              alchemy_language.emotion(parameters, function (err, response) {
+                if (err)
+                  console.log('error:', err);
+                else
+                  sendTextMessage(sender, "Your mood is: " + JSON.stringify(response, null, 2))
+              });
+
+              alchemy_language.keywords(parameters, function (err, response) {
+                if (err)
+                  console.log('error:', err);
+                else
+                  sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
+                  console.log(JSON.stringify(response, null, 2));
+              });
         			console.log(timeOfDay, text, morning, afternoon, evening, active)
         			break;
         		case 1:
@@ -93,6 +117,7 @@ const token = "EAAINY3XI1EABAA82aksmY4P7HYrns3SqZArQqcpv06ghQNeQ8hsnkU0sXVGrzPaO
 
 function sendTextMessage(sender, text) {
     let messageData = { text:text }
+    sentiment = messageData
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
