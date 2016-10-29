@@ -75,12 +75,13 @@ app.post('/webhook/', function (req, res) {
                   console.log('error:', err);
                 }
                 else {
-                  sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
-                  console.log(JSON.parse(response));
+                  mood = JSON.stringify(response, null, 2)
+                  console.log(mood)
+                  console.log(JSON.stringify(response, null, 2));
                   }
               });
 
-        			sendTextMessage(sender, "Hey! How is your afternoon?")
+        			sendTextMessage(sender, mood + "Hey! How is your afternoon?")
         			timeOfDay = 2
         			break;
         		case 2:
@@ -95,7 +96,6 @@ app.post('/webhook/', function (req, res) {
                 else {
                   sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
                   console.log(JSON.stringify(response, null, 2));
-                  console.log(JSON.parse(response));
                   }
               });
 
@@ -116,7 +116,6 @@ app.post('/webhook/', function (req, res) {
                 else {
                   sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
                   console.log(Object.keys(JSON.stringify(response, null, 2)));
-                  console.log(JSON.parse(response));
                   }
               });
 
