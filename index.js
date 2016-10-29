@@ -77,7 +77,7 @@ app.post('/webhook/', function (req, res) {
                   console.log('error:', err);
                 }
                 else {
-                  mood = JSON.stringify(response, null, 2).object[0]
+                  mood = response.body
                   console.log(mood)
                   sendTextMessage('hi')
                   console.log(JSON.stringify(response, null, 2));
