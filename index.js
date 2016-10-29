@@ -35,20 +35,24 @@ app.listen(app.get('port'), function() {
 app.post('/webhook/', function (req, res) {
     let messaging_events = req.body.entry[0].messaging
     for (let i = 0; i < messaging_events.length; i++) {
-        let event = req.body.entry[0].messaging[i]
-        let sender = event.sender.id
-        if (event.message && event.message.text) {
-            let text = event.message.text
-            if (text === 'Generic') {
-                sendGenericMessage(sender)
-                continue
-            }
-            sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+      let event = req.body.entry[0].messaging[i]
+      let sender = event.sender.id
+      if (event.message && event.message.text) {
+        let text = event.message.text
+        if (text === 'Generic') {
+            sendGenericMessage(sender)
+            continue
         }
+        sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+      }
+      if (event.postback) {
+        let text = JSON.stringify(event.postback)
+        sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+        continue
+      }
     }
     res.sendStatus(200)
-})
-
+  })
 
 const token = "EAAINY3XI1EABAGqj0Sxg57Sie8sJLSQRKdAhfqMhxPhHB0fkb1gy9pfH7xnmZCmxNYb9Dv69DeY0GijQsEzDZCdgApZBxp0SLqIhtE8m9ZCZCGETFmBQcXiX9cXZBCn7msaxk7h5ty8IYkpg4kaM2b63s0OYQyNtzZCIps38QTZAEgZDZD"
 
