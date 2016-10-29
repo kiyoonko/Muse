@@ -72,31 +72,18 @@ app.post('/webhook/', function (req, res) {
                 text: text
               };
 
-              alchemy_language.emotion(parameters, function (err, response) {
+              alchemy_language.keywords(parameters, function (err, response) {
                 if (err) {
                   console.log('error:', err);
                 }
                 else {
-                  var obj = JSON.stringify(response, null, 2)
-                  console.log(obj)
-                  sendTextMessage(obj)
-                  // console.log(JSON.stringify(response, null, 2));
-                }
+                  sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
+                  console.log(JSON.stringify(response, null, 2));
+                  }
               });
 
         			sendTextMessage(sender, "Hey! How is your afternoon?")
         			timeOfDay = 2
-              alchemy_language.emotion(afternoon, function (err, response) {
-                if (err) {
-                  console.log('error:', err);
-                }
-                else {
-                  var obj = JSON.stringify(response, null, 2)
-                  console.log(obj)
-                  sendTextMessage(obj)
-                  // console.log(JSON.stringify(response, null, 2));
-                }
-              });
         			console.log(timeOfDay, text, morning, afternoon, evening, active)
         			break;
         		case 2:
@@ -124,19 +111,19 @@ app.post('/webhook/', function (req, res) {
                 text: text
               };
 
-              alchemy_language.emotion(parameters, function (err, response) {
+              alchemy_language.keywords(parameters, function (err, response) {
                 if (err) {
                   console.log('error:', err);
                 }
                 else {
-                  setTimeout(()=>{sendTextMessage(sender, "Your mood is: " + JSON.stringify(response, null, 2))}, 2000)
-
+                  sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
                   console.log(JSON.stringify(response, null, 2));
-              }
+                  }
               });
+
         			sendTextMessage(sender, "Hmm... I see. Okay well here is a playlist created just for you based on your day except nah (At least not yet). Here are your responses - Morning: "+morning+" | Afternoon: "+afternoon+" | Evening "+evening+". Hope you enjoy the music!")
         			timeOfDay = 0
-					active = 0
+					    active = 0
         			console.log(timeOfDay, text, morning, afternoon, evening, active)
         			break;
         	}
