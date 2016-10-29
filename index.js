@@ -5,10 +5,10 @@ const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
 var active = 0
-var morning;
-var afternoon;
-var evening;
-var timeOfDay = 0;
+var morning
+var afternoon
+var evening
+var timeOfDay = 0
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -57,7 +57,6 @@ app.post('/webhook/', function (req, res) {
         		case 0:
         			sendTextMessage(sender, "Hello! How is your morning?")
         			timeOfDay = 1
-        			active = 1;
         			break;
         		case 1:
         			morning = text
