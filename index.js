@@ -55,17 +55,17 @@ app.post('/webhook/', function (req, res) {
         else if(Boolean(active)){
         	switch(timeOfDay){
         		case 0:
-        			sendTextMessage(sender, "Hello " + sender +". How is your morning?")
+        			sendTextMessage(sender, "Hello! How is your morning?")
         			timeOfDay = 1
         			break;
         		case 1:
         			morning = text
-        			sendTextMessage(sender, "Hey " + sender +"! How is your afternoon?")
+        			sendTextMessage(sender, "Hey! How is your afternoon?")
         			timeOfDay = 2
         			break;
         		case 2:
         			afternoon = text
-        			sendTextMessage(sender, "Good evening " + sender +". How is your evening?")
+        			sendTextMessage(sender, "Good evening~ How is your evening?")
         			timeOfDay = 3
         			break;
         		case 3:
