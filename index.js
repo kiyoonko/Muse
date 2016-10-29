@@ -67,6 +67,7 @@ app.post('/webhook/', function (req, res) {
         			break;
         		case 1:
         			morning = text
+              var mood = ''
               var parameters = {
                 text: text
               };
@@ -76,12 +77,15 @@ app.post('/webhook/', function (req, res) {
                   console.log('error:', err);
                 }
                 else {
-                  setTimeout(()=>{sendTextMessage(sender, "Your mood is: " + JSON.stringify(response, null, 2))}, 2000)
+                  mood = JSON.stringify(response, null, 2)
                   sendTextMessage('hi')
                   console.log(JSON.stringify(response, null, 2));
                 }
               });
 
+              setTimeout(()=>{
+                sendTextMessage(sender, "Your mood is: " + mood, 2000)
+              })
         			sendTextMessage(sender, "Hey! How is your afternoon?")
         			timeOfDay = 2
         			console.log(timeOfDay, text, morning, afternoon, evening, active)
