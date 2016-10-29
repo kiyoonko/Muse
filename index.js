@@ -57,6 +57,7 @@ app.post('/webhook/', function (req, res) {
         		case 0:
         			sendTextMessage(sender, "Hello! How is your morning?")
         			timeOfDay = 1
+        			active = 1;
         			break;
         		case 1:
         			morning = text
