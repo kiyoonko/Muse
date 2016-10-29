@@ -11,7 +11,7 @@ var evening;
 var timeOfDay = 0;
 
 //facebook API
-  FB.init({
+  window.fbAsyncInit = FB.init({
     appId      : '577670782440512',
     xfbml      : true,
     version    : 'v2.8'
