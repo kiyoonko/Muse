@@ -10,6 +10,24 @@ var afternoon;
 var evening;
 var timeOfDay = 0;
 
+//facebook API
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '577670782440512',
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
@@ -42,6 +60,14 @@ app.post('/webhook/', function (req, res) {
     for (let i = 0; i < messaging_events.length; i++) {
       let event = req.body.entry[0].messaging[i]
       let sender = event.sender.id
+      	FB.api(
+    		sender,
+   			function (response) {
+      			if (response && !response.error) {
+        			let senderName = response.firstname
+      			}
+    		}
+		);
       if (event.message && event.message.text) {
         let text = event.message.text
         if (text === 'Hi MuseBot' && !Boolean(active)) {
@@ -55,17 +81,17 @@ app.post('/webhook/', function (req, res) {
         else if(Boolean(active)){
         	switch(timeOfDay){
         		case 0:
-        			sendTextMessage(sender, "Hello " + sender +". How is your morning?")
+        			sendTextMessage(sender, "Hello " + senderName +". How is your morning?")
         			timeOfDay = 1
         			break;
         		case 1:
         			morning = text
-        			sendTextMessage(sender, "Hey " + sender +"! How is your afternoon?")
+        			sendTextMessage(sender, "Hey " + senderName +"! How is your afternoon?")
         			timeOfDay = 2
         			break;
         		case 2:
         			afternoon = text
-        			sendTextMessage(sender, "Good evening " + sender +". How is your evening?")
+        			sendTextMessage(sender, "Good evening " + senderName +". How is your evening?")
         			timeOfDay = 3
         			break;
         		case 3:
