@@ -72,7 +72,7 @@ app.post('/webhook/', function (req, res) {
                 text: text
               };
 
-              alchemy_language.keywords(parameters, function (err, response) {
+              alchemy_language.emotions(parameters, function (err, response) {
                 if (err) {
                   console.log('error:', err);
                 }
@@ -117,9 +117,6 @@ app.post('/webhook/', function (req, res) {
                 }
                 else {
                   sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
-
-                  sendTextMessage(sender, "Your key words are: " + Object.keys(JSON.stringify(response, null, 2)))
-                  sendTextMessage(sender, "Your key words are: " + Object.values(JSON.stringify(response, null, 2)))
                   console.log(Object.Keys(JSON.stringify(response, null, 2)));
                   }
               });
