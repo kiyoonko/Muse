@@ -76,7 +76,7 @@ app.post('/webhook/', function (req, res) {
                   console.log('error:', err);
                 }
                 else {
-                  sendTextMessage(sender, "Your mood is: " + JSON.stringify(response, null, 2))
+                  setTimeout(()=>{sendTextMessage(sender, "Your mood is: " + JSON.stringify(response, null, 2))}, 2000)
                   sendTextMessage('hi')
                   console.log(JSON.stringify(response, null, 2));
                 }
