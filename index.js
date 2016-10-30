@@ -162,7 +162,7 @@ app.post('/webhook/', function (req, res) {
                     if(sender != "1806806452938653"){
                         evening = text
                         timeOfDay = 0
-					   active = 0
+					              active = 0
                     }
         			console.log(timeOfDay, text, morning, afternoon, evening, active)
         			break;
@@ -278,7 +278,7 @@ function authenticateButton(sender, text){
 //This is the class where it calls all the helper methods!
 //So I don't know if this is correct or not so we'll have to test it too... someone do that pls.
 function generatePlaylist(){
-    authenticateSpotify(); //this is supposed to be the value of a variable credential.
+    // authenticateSpotify(); //this is supposed to be the value of a variable credential.
     //first, make the playlist.
     var playlistId = createPlaylist();
     //Then, Geng's sentiment analysis result here: average? or something idk tbh. we'll talk about it when we're all awake. Hardcoded until we meet again.
