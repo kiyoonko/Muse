@@ -182,12 +182,14 @@ function sendAction(sender) {
 
 function authenticateButton(sender){
     let messageData = {
-        "button": [{
-            "type": "postback",
-            "title": "Make Playlist",
-            "payload": authenticateSpotify()
-        }]
-    }
+        "attachment": {
+            "button": [{
+                "type": "postback",
+                "title": "Make Playlist",
+                "payload": authenticateSpotify()
+            }]
+        }
+}   }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
