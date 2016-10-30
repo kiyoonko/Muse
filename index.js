@@ -80,9 +80,10 @@ app.post('/webhook/', function (req, res) {
                   setTimeout(()=> { sendTextMessage(sender, "Your mood is:" + mood)}, 2000)
                   }
               });
-
+              console.log('before the end')
         			setTimeout(()=> { sendTextMessage(sender, "Hey! How is your afternoon?") }, 7000)
         			timeOfDay = 2
+              console.log('after the end')
         			break;
 
         		case 2:
