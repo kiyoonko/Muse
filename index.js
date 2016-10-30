@@ -91,7 +91,7 @@ app.post('/webhook/', function (req, res) {
               var parameters = {
                 text: text
               };
-              alchemy_language.emotion(parameters, function (err, response) {
+              alchemy_language.keywords(parameters, function (err, response) {
                 if (err) {
                   console.log('error:', err);
                 }
