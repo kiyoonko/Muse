@@ -147,7 +147,7 @@ function sendTextMessage(sender, text) {
         qs: {access_token:token},
         method: 'POST',
         json: {
-            sender: {id:sender},
+            recipient: {id:sender},
             message: messageData
         }
     }, function(error, response, body) {
@@ -167,7 +167,7 @@ function sendAction(sender) {
         qs: {access_token:token},
         method: 'POST',
         json: {
-            sender: {id:sender},
+            recipient: {id:sender},
             sender_action: action
         }
     }, function(error, response, body) {
