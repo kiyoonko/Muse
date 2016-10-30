@@ -75,8 +75,7 @@ app.post('/webhook/', function (req, res) {
                   console.log('error:', err);
                 }
                 else {
-                  mood = JSON.stringify(response, null, 2)
-                  console.log(mood)
+                  console.log(response[docEmotions])
                   console.log(JSON.stringify(response, null, 2));
                   }
               });
@@ -84,18 +83,19 @@ app.post('/webhook/', function (req, res) {
         			sendTextMessage(sender, mood + "Hey! How is your afternoon?")
         			timeOfDay = 2
         			break;
+
         		case 2:
         			afternoon = text
               var parameters = {
                 text: text
               };
-              alchemy_language.keywords(parameters, function (err, response) {
+              alchemy_language.emotion(parameters, function (err, response) {
                 if (err) {
                   console.log('error:', err);
                 }
                 else {
                   sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
-                  console.log(JSON.stringify(response, null, 2));
+                  console.log(response[docEmotions]);
                   }
               });
 
@@ -115,7 +115,7 @@ app.post('/webhook/', function (req, res) {
                 }
                 else {
                   sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
-                  console.log(Object.keys(JSON.stringify(response, null, 2)));
+                  console.log(Object.values(JSON.stringify(response, null, 2)));
                   }
               });
 
