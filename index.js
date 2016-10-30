@@ -183,8 +183,8 @@ function sendAction(sender) {
 function authenticateButton(sender){
     let messageData = {
         "button": [{
-            "type": "postback"
-            "title": "Make Playlist"
+            "type": "postback",
+            "title": "Make Playlist",
             "payload": authenticateSpotify();
         }]
         request({
