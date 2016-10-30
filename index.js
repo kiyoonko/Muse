@@ -185,7 +185,7 @@ function authenticateButton(sender){
         "button": [{
             "type": "postback",
             "title": "Make Playlist",
-            "payload": authenticateSpotify();
+            "payload": authenticateSpotify()
         }]
         request({
             url: 'https://graph.facebook.com/v2.6/me/messages',
