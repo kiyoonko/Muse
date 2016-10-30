@@ -95,8 +95,9 @@ app.post('/webhook/', function (req, res) {
                   console.log('error:', err);
                 }
                 else {
+                  sendAction(sender)
                   mood = JSON.stringify(response['docEmotions'])
-                    setTimeout(()=> { sendTextMessage(sender, "Your mood is:" + mood)}, 2000)
+                  setTimeout(()=> { sendTextMessage(sender, "Your mood is:" + mood)}, 2000)
                   }
               });
 
@@ -115,11 +116,12 @@ app.post('/webhook/', function (req, res) {
                   console.log('error:', err);
                 }
                 else {
+                  sendAction(sender)
                   mood = JSON.stringify(response['docEmotions'])
                   setTimeout(()=> { sendTextMessage(sender, "Your mood is:" + mood)}, 2000)
                   }
               });
-
+              sendAction(sender)
         			setTimeout(()=> { sendTextMessage(sender, "Hmm... I see. Okay well here is a playlist created just for you based on your day except nah (At least not yet). Here are your responses - Morning: "+morning+" | Afternoon: "+afternoon+" | Evening "+evening+". Hope you enjoy the music!")}, 7000)
         			timeOfDay = 0
 					    active = 0
