@@ -76,11 +76,11 @@ app.post('/webhook/', function (req, res) {
                 }
                 else {
                   mood = JSON.stringify(response['docEmotions'])
-                  setTimeout(()=> { sendTextMessage(sender, "Your mood is:" + mood)}, 3000)
+                  setTimeout(()=> { sendTextMessage(sender, "Your mood is:" + mood)}, 2000)
                   }
               });
 
-        			setTimeout(()=> { sendTextMessage(sender, "Hey! How is your afternoon?") }, 5000)
+        			setTimeout(()=> { sendTextMessage(sender, "Hey! How is your afternoon?") }, 7000)
         			timeOfDay = 2
         			break;
 
@@ -95,11 +95,11 @@ app.post('/webhook/', function (req, res) {
                 }
                 else {
                   mood = JSON.stringify(response['docEmotions'])
-                  sendTextMessage(sender, "Your mood is:" + mood)
+                    setTimeout(()=> { sendTextMessage(sender, "Your mood is:" + mood)}, 2000)
                   }
               });
 
-        			sendTextMessage(sender, "Good evening~ How is your evening?")
+        			setTimeout(()=> { sendTextMessage(sender, "Good evening~ How is your evening?")}, 7000)
         			timeOfDay = 3
         			break;
 
@@ -115,11 +115,11 @@ app.post('/webhook/', function (req, res) {
                 }
                 else {
                   mood = JSON.stringify(response['docEmotions'])
-                  sendTextMessage(sender, "Your mood is:" + mood)
+                  setTimeout(()=> { sendTextMessage(sender, "Your mood is:" + mood)}, 2000)
                   }
               });
 
-        			sendTextMessage(sender, "Hmm... I see. Okay well here is a playlist created just for you based on your day except nah (At least not yet). Here are your responses - Morning: "+morning+" | Afternoon: "+afternoon+" | Evening "+evening+". Hope you enjoy the music!")
+        			setTimeout(()=> { sendTextMessage(sender, "Hmm... I see. Okay well here is a playlist created just for you based on your day except nah (At least not yet). Here are your responses - Morning: "+morning+" | Afternoon: "+afternoon+" | Evening "+evening+". Hope you enjoy the music!")}, 7000)
         			timeOfDay = 0
 					    active = 0
         			console.log(timeOfDay, text, morning, afternoon, evening, active)
@@ -127,7 +127,7 @@ app.post('/webhook/', function (req, res) {
         	}
         }
         else{
-			sendTextMessage(sender, "Please say 'Hi MuseBot' to get started.")
+			       sendTextMessage(sender, "Please say 'Hi MuseBot' to get started.")
         }
       }
     }
@@ -138,7 +138,7 @@ const token = "EAAINY3XI1EABAA82aksmY4P7HYrns3SqZArQqcpv06ghQNeQ8hsnkU0sXVGrzPaO
 
 function sendTextMessage(sender, text) {
     let messageData = { text:text }
-    sentiment = messageData
+
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
@@ -146,6 +146,7 @@ function sendTextMessage(sender, text) {
         json: {
             recipient: {id:sender},
             message: messageData,
+            sender_action: typing_on
         }
     }, function(error, response, body) {
         if (error) {
