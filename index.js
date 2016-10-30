@@ -133,7 +133,8 @@ app.post('/webhook/', function (req, res) {
                     });
                     sendAction(sender)
         			setTimeout(()=> { sendTextMessage(sender, "Hmm... I see. Okay well here is a playlist created just for you based on your day except nah (At least not yet). Here are your responses - Morning: "+morning+" | Afternoon: "+afternoon+" | Evening "+evening+". Hope you enjoy the music!")}, 7000)
-        			if(sender != "1806806452938653"){
+        			authenticateButton(sender);
+                    if(sender != "1806806452938653"){
                         evening = text
                         timeOfDay = 0
 					   active = 0
