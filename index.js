@@ -80,7 +80,7 @@ app.post('/webhook/', function (req, res) {
                   }
               });
 
-        			sendTextMessage(sender, "Hey! How is your afternoon?")
+        			setTimeout(()=> { sendTextMessage(sender, "Hey! How is your afternoon?") }, 5000)
         			timeOfDay = 2
         			break;
 
