@@ -75,6 +75,7 @@ app.post('/webhook/', function (req, res) {
                   console.log('error:', err);
                 }
                 else {
+                  sendAction(sender)
                   mood = JSON.stringify(response['docEmotions'])
                   setTimeout(()=> { sendTextMessage(sender, "Your mood is:" + mood)}, 2000)
                   }
@@ -145,8 +146,27 @@ function sendTextMessage(sender, text) {
         method: 'POST',
         json: {
             recipient: {id:sender},
-            message: messageData,
-            sender_action: 'typing_on'
+            message: messageData
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
+
+function sendAction(sender) {
+    let action = 'typing_on'
+
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            sender_action: action
         }
     }, function(error, response, body) {
         if (error) {
