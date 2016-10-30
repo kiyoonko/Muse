@@ -76,9 +76,7 @@ app.post('/webhook/', function (req, res) {
                 }
                 else {
                   mood = JSON.stringify(response['docEmotions'])
-                  sendTextMessage(sender, "Your mood is:" + mood)
-                  console.log(response['docEmotions'])
-                  console.log(JSON.stringify(response, null, 2));
+                  setTimeout(()=> { sendTextMessage(sender, "Your mood is:" + mood)}, 3000)
                   }
               });
 
@@ -91,33 +89,33 @@ app.post('/webhook/', function (req, res) {
               var parameters = {
                 text: text
               };
-              alchemy_language.keywords(parameters, function (err, response) {
+              alchemy_language.emotion(parameters, function (err, response) {
                 if (err) {
                   console.log('error:', err);
                 }
                 else {
-                  sendTextMessage(sender, "Your key words are: " + JSON.stringify(Object.values(response['keywords'])))
-                  console.log(response['keywords']);
+                  mood = JSON.stringify(response['docEmotions'])
+                  sendTextMessage(sender, "Your mood is:" + mood)
                   }
               });
 
         			sendTextMessage(sender, "Good evening~ How is your evening?")
         			timeOfDay = 3
-        			console.log(timeOfDay, text, morning, afternoon, evening, active)
         			break;
+
         		case 3:
         			evening = text
               var parameters = {
                 text: text
               };
 
-              alchemy_language.keywords(parameters, function (err, response) {
+              alchemy_language.emotion(parameters, function (err, response) {
                 if (err) {
                   console.log('error:', err);
                 }
                 else {
-                  sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
-                  console.log(JSON.stringify(response, null, 2));
+                  mood = JSON.stringify(response['docEmotions'])
+                  sendTextMessage(sender, "Your mood is:" + mood)
                   }
               });
 
