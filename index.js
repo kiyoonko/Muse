@@ -74,8 +74,8 @@ app.post('/webhook/', function (req, res) {
                 if (err) {
                   console.log('error:', err);
                 }
-                else {
-                  console.log(response[docEmotions])
+                else {r
+                  console.log(response['docEmotions'])
                   console.log(JSON.stringify(response, null, 2));
                   }
               });
@@ -95,7 +95,7 @@ app.post('/webhook/', function (req, res) {
                 }
                 else {
                   sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
-                  console.log(response[docEmotions]);
+                  console.log(response['docEmotions']);
                   }
               });
 
