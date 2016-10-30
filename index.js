@@ -186,7 +186,7 @@ function authenticateButton(sender){
             "type": "template",
             "payload":{
                 "template_type":"button",
-                "button": [{
+                "buttons": [{
                     "type": "postback",
                     "title": "Make Playlist",
                     "payload": authenticateSpotify()
