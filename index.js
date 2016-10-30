@@ -75,13 +75,12 @@ app.post('/webhook/', function (req, res) {
                   console.log('error:', err);
                 }
                 else {
-                  mood = response['docEmotions']
+                  mood = JSON.stringify(response['docEmotions'])
                   sendTextMessage(sender, "Your mood is:" + mood)
                   console.log(response['docEmotions'])
                   console.log(JSON.stringify(response, null, 2));
                   }
               });
-              sendTextMessage(sender, "Your mood is 1:" + mood)
 
         			sendTextMessage(sender, "Hey! How is your afternoon?")
         			timeOfDay = 2
