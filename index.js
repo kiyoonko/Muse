@@ -153,7 +153,7 @@ function sendTextMessage(sender, text) {
         method: 'POST',
         json: {
             recipient: {id:sender},
-            message: messageData
+            message: messageData,
         }
     }, function(error, response, body) {
         if (error) {
@@ -173,7 +173,7 @@ function sendAction(sender) {
         method: 'POST',
         json: {
             recipient: {id:sender},
-            sender_action: action
+            sender_action: action,
         }
     }, function(error, response, body) {
         if (error) {
