@@ -186,6 +186,7 @@ function authenticateButton(sender){
             "type": "template",
             "payload":{
                 "template_type":"button",
+                "text": "Check out your playlist!",
                 "buttons": [{
                     "type": "postback",
                     "title": "Make Playlist",
