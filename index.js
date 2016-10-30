@@ -132,7 +132,7 @@ app.post('/webhook/', function (req, res) {
                         }
                     });
                     sendAction(sender)
-        			setTimeout(()=> { authenticationButton(sender, "Hmm... I see. Okay well here is a playlist created just for you based on your day. Here are your responses - Morning: "+morning+" | Afternoon: "+afternoon+" | Evening "+evening+". Hope you enjoy the music!")}, 7000)
+        			setTimeout(()=> { authenticateButton(sender, "Hmm... I see. Okay well here is a playlist created just for you based on your day. Here are your responses - Morning: "+morning+" | Afternoon: "+afternoon+" | Evening "+evening+". Hope you enjoy the music!")}, 7000)
                     if(sender != "1806806452938653"){
                         evening = text
                         timeOfDay = 0
