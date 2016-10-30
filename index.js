@@ -74,7 +74,7 @@ app.post('/webhook/', function (req, res) {
                 if (err) {
                   console.log('error:', err);
                 }
-                else {r
+                else {
                   console.log(response['docEmotions'])
                   console.log(JSON.stringify(response, null, 2));
                   }
