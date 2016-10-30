@@ -122,7 +122,7 @@ app.post('/webhook/', function (req, res) {
                   }
               });
               sendAction(sender)
-        			setTimeout(()=> { sendTextMessage(sender, "Hmm... I see. Okay well here is a playlist created just for you based on your day). Here are your responses - Morning: "+morning+" | Afternoon: "+afternoon+" | Evening "+evening+". Hope you enjoy the music!")}, 7000)
+        			setTimeout(()=> { sendTextMessage(sender, "Hmm... I see. Okay well here is a playlist created just for you based on your day except nah (At least not yet). Here are your responses - Morning: "+morning+" | Afternoon: "+afternoon+" | Evening "+evening+". Hope you enjoy the music!")}, 7000)
         			timeOfDay = 0
 					    active = 0
         			console.log(timeOfDay, text, morning, afternoon, evening, active)
@@ -137,7 +137,7 @@ app.post('/webhook/', function (req, res) {
     res.sendStatus(200)
   })
 
-const token = "EAAINY3XI1EABAA82aksmY4P7HYrns3SqZArQqcpv06ghQNeQ8hsnkU0sXVGrzPaOrmh6juZCqrZCoSZCHn3zV0otvKmPcaG8mI1ZCXrImDa9NeljbfNPZCJ7xf5EZBXC0LFrNJvyRbe09hT7P2RGLZCHtDtrKAyT0xi0dPxUntANIAZDZD"
+const token = "EAAINY3XI1EABABMFjHOSN2fPdAMfkZBZCZC838TqZCVTzU9niGaZBX8Q7k2h4ocSZCYkOjEf6fWywADMY4TJfGN5L9ZBkI0sphIVlsLju8aPVl4ZAF53mIpJUT9bNZB9AI0rN3kSZB9PZATCiHEYdQN8XuiaSDLKx4KD83cIWUHRij78AZDZD"
 
 function sendTextMessage(sender, text) {
     let messageData = { text:text }
@@ -177,29 +177,4 @@ function sendAction(sender) {
             console.log('Error: ', response.body.error)
         }
     })
-}
-
-function authenticateButton(sender){
-    let messageData = {
-        "button": [{
-            "type": "postback"
-            "title": "Make Playlist"
-            "payload": authenticateSpotify();
-        }]
-        request({
-            url: 'https://graph.facebook.com/v2.6/me/messages',
-            qs: {access_token:token},
-            method: 'POST',
-            json: {
-                recipient: {id:sender},
-                message: messageData,
-            }
-        }, function(error, response, body) {
-            if (error) {
-                console.log('Error sending messages: ', error)
-            } else if (response.body.error) {
-                console.log('Error: ', response.body.error)
-            }
-        })
-    }
 }
