@@ -47,10 +47,6 @@ app.post('/webhook/', function (req, res) {
     for (let i = 0; i < messaging_events.length; i++) {
       let event = req.body.entry[0].messaging[i]
       let sender = event.sender.id
-      if(event.postback){
-        authenticateSpotify();
-      }
-      else{
       if (event.message && event.message.text) {
         let text = event.message.text
         if (text === 'Hi MuseBot' && !Boolean(active)) {
@@ -137,7 +133,9 @@ app.post('/webhook/', function (req, res) {
         else{
 			       sendTextMessage(sender, "Please say 'Hi MuseBot' to get started.")
         }
-    }
+        if(event.postback){
+        authenticateSpotify();
+        }
       }
     }
     res.sendStatus(200)
