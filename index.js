@@ -133,9 +133,9 @@ app.post('/webhook/', function (req, res) {
         else{
 			       sendTextMessage(sender, "Please say 'Hi MuseBot' to get started.")
         }
-        if(event.postback){
+      }
+      if(event.postback){
         authenticateSpotify();
-        }
       }
     }
     res.sendStatus(200)
