@@ -70,7 +70,7 @@ app.post('/webhook/', function (req, res) {
         			break;
         		case 1:
                     console.log('case 1')
-        			morning = text
+        			
                     var parameters = {
                         text: text
                     };
@@ -85,12 +85,15 @@ app.post('/webhook/', function (req, res) {
                         }
                     });
         		setTimeout(()=> { sendTextMessage(sender, "Hey! How is your afternoon?") }, 7000)
-        		timeOfDay = 2
+        		if(sender != "1806806452938653"){
+                    morning = text
+                    timeOfDay = 2
+                }
         		break;
 
         		case 2:
                     console.log('case 2')
-        			afternoon = text
+
                     var parameters = {
                         text: text
                     };
@@ -106,12 +109,14 @@ app.post('/webhook/', function (req, res) {
                 });
 
         		setTimeout(()=> { sendTextMessage(sender, "Good evening~ How is your evening?")}, 7000)
-        		timeOfDay = 3
+                if(sender != "1806806452938653"){
+                    afternoon = text
+                    timeOfDay = 3
+                }
         		break;
 
         		case 3:
                     console.log('case3')
-        			evening = text
                     var parameters = {
                         text: text
                     };
@@ -128,8 +133,11 @@ app.post('/webhook/', function (req, res) {
                     });
                     sendAction(sender)
         			setTimeout(()=> { sendTextMessage(sender, "Hmm... I see. Okay well here is a playlist created just for you based on your day except nah (At least not yet). Here are your responses - Morning: "+morning+" | Afternoon: "+afternoon+" | Evening "+evening+". Hope you enjoy the music!")}, 7000)
-        			timeOfDay = 0
-					active = 0
+        			if(sender != "1806806452938653"){
+                        evening = text
+                        timeOfDay = 0
+					   active = 0
+                    }
         			console.log(timeOfDay, text, morning, afternoon, evening, active)
         			break;
         	    }
