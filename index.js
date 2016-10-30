@@ -97,7 +97,7 @@ app.post('/webhook/', function (req, res) {
                 }
                 else {
                   sendTextMessage(sender, "Your key words are: " + JSON.stringify(response['keywords']))
-                  console.log(response['docEmotions']);
+                  console.log(response['keywords']);
                   }
               });
 
@@ -117,7 +117,7 @@ app.post('/webhook/', function (req, res) {
                 }
                 else {
                   sendTextMessage(sender, "Your key words are: " + JSON.stringify(response, null, 2))
-                  console.log(Object.values(JSON.stringify(response, null, 2)));
+                  console.log(JSON.stringify(response, null, 2));
                   }
               });
 
