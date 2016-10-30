@@ -58,6 +58,7 @@ app.post('/webhook/', function (req, res) {
         	timeOfDay = 0
         }
         else if(Boolean(active)){
+          var mood = ''
         	switch(timeOfDay){
         		case 0:
         			sendTextMessage(sender, "Hello! How is your morning?")
@@ -65,7 +66,6 @@ app.post('/webhook/', function (req, res) {
         			break;
         		case 1:
         			morning = text
-              var mood = ''
               var parameters = {
                 text: text
               };
@@ -75,12 +75,15 @@ app.post('/webhook/', function (req, res) {
                   console.log('error:', err);
                 }
                 else {
+                  mood = response['docEmotions']
+                  sendTextMessage(sender, "Your mood is:" + mood)
                   console.log(response['docEmotions'])
                   console.log(JSON.stringify(response, null, 2));
                   }
               });
+              sendTextMessage(sender, "Your mood is 1:" + mood)
 
-        			sendTextMessage(sender, mood + "Hey! How is your afternoon?")
+        			sendTextMessage(sender, "Hey! How is your afternoon?")
         			timeOfDay = 2
         			break;
 
