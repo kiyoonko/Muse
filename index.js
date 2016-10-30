@@ -183,7 +183,7 @@ function sendAction(sender) {
 function authenticateButton(sender){
     let messageData = {
         "attachment": {
-            "type": "template"{
+            "type": "template",
                 "payload":{
                     "template_type":"button",
                     "button": [{
