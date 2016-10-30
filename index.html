@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>API</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <script src="./test.js"></script>
+    <script src="./index.js"></script>
+
+
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-xs-8">
+
+                <form id="gifForm">
+                    <div class="form-group">
+                        <div class="control-label">
+                            <label for="q">GIPHY</label>
+                        </div>
+
+                        <input type="textfield" name="q" class="form-control">
+                        <!-- <div class="col-sm-6"> -->
+                        <input type="textfield" name="api_key" value="dc6zaTOxFJmzC" id="gif-key">
+                        <!-- </div> -->
+                        <div class="form-group">
+
+                            <input type="submit" value="Search" class="btn btn-primary btn-md" id="gifButton">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-8">
+
+                <form id="moneyForm">
+                    <div class="form-group">
+                        <div class="control-label">
+                            <label for="symbols">FOREX</label>
+                        </div>
+                        <input type="textfield" name="symbols" style="text-transform:uppercase" class="form-control">
+                        <input type="textfield" name="symbols2" style="text-transform:uppercase" class="form-control" id="topFormPad">
+
+                        <div class="form-group">
+
+                            <input type="submit" value="Exchange" class="btn btn-info btn-md" id="topFormPad">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-8">
+
+                <form id="spotifyForm">
+                    <div class="form-group">
+                        <div class="control-label">
+                            <label for="type">SPOTIFY</label>
+                        </div>
+                        <input type="textfield" name="q" id="spotify" class="form-control">
+                        <div class="form-group">
+                            <input type="submit" value="Play" class="btn btn-md" id="spotifyButton">
+                        </div>
+                    </div>
+                </form>
+              </div>
+          </div>
+
+
+                <div class="well" align="center" id="well">
+                    <div>
+                        <div class="page-header" align="center">
+                            <h1>API<small> SandBox</small></h1>
+                        </div>
+                        <div id="main">
+                          
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+</body>
+
+</html>

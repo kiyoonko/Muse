@@ -17,10 +17,11 @@ var evening;
 var mood;
 var playlist;
 var timeOfDay = 0;
-var watson = require('watson-developer-cloud');
-var alchemy_language = watson.alchemy_language({
-  api_key: 'eb0ddf47c65932a16f7e44101448025abee42655'
-});
+var spotifyToken;
+//var watson = require('watson-developer-cloud');
+//var alchemy_language = watson.alchemy_language({
+//  api_key: 'eb0ddf47c65932a16f7e44101448025abee42655'
+//});
 var sentiment = ''
 
 app.set('port', (process.env.PORT || 5000))
@@ -306,7 +307,7 @@ function authenticateSpotify(){
 }
 
 //spotifyToken! Something that should be retrieved from authenticate Spotify.
-var spotifyToken = 'BQAANk50lG7FwySvPh4Uwa9yPidEFeAGm8xvp60nbVTbPGyBLCHwKw148njETAVjjWLeKLA3VPxeG3zuLUXmlu-qesD-YhUbULclnkutKoNJveOkM9RMSe7K27bSQOVMevlnOH2EnnYajmeK7aAgkfZ7NUIy9ZMj'
+spotifyToken = 'BQAmuI3L4fHzsiTy4KQy0F8Hm5cH1akjVuQEqtggN6dA46lzD5T6ODv2Bx04leA9GaIYDTGUX2zRwHY8tM9fVRPeIAk5ggcRGIAxfNPoSeu6-mrfp2vXWPBZ5BqYYKCUR0nvxb6XeIJyrfSlpgN8P6VqJzpygeNKt7ZL5NYKhUuU2nxZv7YVZryZlSCB7w-m9UFGxuUgGYntmnr2Q1uAKcuAQBxoujnHDL1fQ0CB9jTZ0045HMVa3fS4uA8-tPKzmCnvewCCAvNegtvchd_aJDfZZt8E7ptnC03iKoW60MXZ';
 
 //Method: giveRecommendation
 //Parameters: seed1, seed2, seed3, danceability, energy, loudness.
@@ -314,8 +315,6 @@ var spotifyToken = 'BQAANk50lG7FwySvPh4Uwa9yPidEFeAGm8xvp60nbVTbPGyBLCHwKw148njE
 //This method returns a list of recommended tracks. ARRAY
 function giveRecommendation(seed1, seed2, seed3, danceability, energy, loudness) {
     $('#main *').remove();
-    var query = $('#spotify').val();
-    // console.log(query);
     var xhr = new XMLHttpRequest();
     $.ajax({
         beforeSend: function(xhr){
@@ -348,6 +347,9 @@ function giveRecommendation(seed1, seed2, seed3, danceability, energy, loudness)
     return playlist;
 };
 
+
+//Temparary token
+
 //Method: createPlaylist
 //Parameters: userId - we need to know who's account we're making the playlist in! For now, hardcoded.
 //Returns: playlistId
@@ -370,10 +372,10 @@ function createPlaylist() {
         }),
 
         success: function(result) {
-            var splitedString = result.external_urls.spotify.split('/');
-            return splitedString[6]; //return the id of the playlist
             console.log(result.external_urls.spotify);
-            console.log("yay");
+            var splitedString = result.external_urls.spotify.split('/');
+            console.log(JSON.stringify(splitedString[6]));
+            return JSON.stringify(splitedString[6]); //return the id of the playlist
         },
 
         error: function(result){
@@ -442,13 +444,12 @@ var xhr = new XMLHttpRequest();
 
         success: function(result) {
             //returnin
-            var answer
-            console.log(result.albums.items);
-            $.each(result.albums, function(index, item) {
-                answer[index] = generateSeed(result.albums[index].id)
-            });
-
-            return answer;
+            var answer = [];
+            //console.log(result.albums.items);
+            for (var i=0; i<3; i++) {
+                console.log(JSON.stringify(result.albums.items[i].id));
+                answer.push(generateSeed(result.albums.items[i].id));
+            }
 
             console.log('yay');
         },
@@ -458,6 +459,7 @@ var xhr = new XMLHttpRequest();
         }
     });
 };
+
 
 //Method: generateSeed
 //Parameters: album_id - the id of an album
@@ -472,10 +474,11 @@ function generateSeed(album_id) {
         data: {limit: 1},
 
         success: function(result) {
-            var splitedString = result.external_urls.spotify.split(':');
-            console.log(result.items[0].uri);
-            console.log("yay");
-            return result.items[0].uri;
+            var trackNum = result.items[0].uri;
+            //console.log(trackNum);
+            var splitedString = trackNum.split(':');
+            //console.log(splitedString[2]);
+            return JSON.stringify(splitedString[2]);
         },
 
         error: function(result){
