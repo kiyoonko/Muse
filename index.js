@@ -2,6 +2,7 @@
 //Author: Kiyoon Ko, Geng Sng, Gina Lee, Kaijie Chen
 //10/29/16
 //MuseBot
+//new comment
 
 'use strict'
 // chatbot
