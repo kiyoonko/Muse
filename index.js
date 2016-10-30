@@ -47,6 +47,7 @@ app.post('/webhook/', function (req, res) {
     for (let i = 0; i < messaging_events.length; i++) {
       let event = req.body.entry[0].messaging[i]
       let sender = event.sender.id.toString()
+      console.log(sender)
       if (event.message && event.message.text) {
         let text = event.message.text
         if (text === 'Hi MuseBot' && !Boolean(active)) {
