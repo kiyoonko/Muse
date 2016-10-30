@@ -148,7 +148,7 @@ app.post('/webhook/', function (req, res) {
         }
         if(event.postback){
             authenticateSpotify();
-            setTimeout(()=>{sentTextMessage(sender, "Hope you enjoy the music!")}, 3000);
+            setTimeout(()=>{sendTextMessage(sender, "Hope you enjoy the music!")}, 3000);
         }
     }
     res.sendStatus(200)
