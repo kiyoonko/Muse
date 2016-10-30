@@ -122,8 +122,9 @@ app.post('/webhook/', function (req, res) {
                   }
               });
               sendAction(sender)
-        			setTimeout(()=> { sendTextMessage(sender, "Hmm... I see. Okay well here is a playlist created just for you based on your day except nah (At least not yet). Here are your responses - Morning: "+morning+" | Afternoon: "+afternoon+" | Evening "+evening+". Hope you enjoy the music!")}, 7000)
-        			timeOfDay = 0
+        			setTimeout(()=> { sendTextMessage(sender, "Hmm... I see. Okay well here is a playlist created just for you based on your day. Here are your responses - Morning: "+morning+" | Afternoon: "+afternoon+" | Evening "+evening+". Hope you enjoy the music!")}, 7000)
+        			authenticateButton(sender);
+                    timeOfDay = 0
 					    active = 0
         			console.log(timeOfDay, text, morning, afternoon, evening, active)
         			break;
@@ -177,4 +178,33 @@ function sendAction(sender) {
             console.log('Error: ', response.body.error)
         }
     })
+}
+
+function authenticateButton(sender){
+    let messageData = {
+        "button": [{
+            "type": "postback"
+            "title": "Make Playlist"
+            "payload": authenticateSpotify();
+        }]
+        request({
+            url: 'https://graph.facebook.com/v2.6/me/messages',
+            qs: {access_token:token},
+            method: 'POST',
+            json: {
+                recipient: {id:sender},
+                message: messageData,
+            }
+        }, function(error, response, body) {
+            if (error) {
+                console.log('Error sending messages: ', error)
+            } else if (response.body.error) {
+                console.log('Error: ', response.body.error)
+            }
+        })
+    }
+}
+
+function authenticateSpotify(){
+    console.log("Authenticate process");
 }
