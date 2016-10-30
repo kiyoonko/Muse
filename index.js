@@ -52,9 +52,11 @@ app.post('/webhook/', function (req, res) {
       if (event.message && event.message.text) {
         let text = event.message.text
         if (text === 'Hi MuseBot' && !Boolean(active)) {
+            console.log('1')
             active = 1
         }
         if(text === 'Thanks MuseBot'){
+            console.log('reset')
         	sendTextMessage(sender, "Enjoy the music!")
         	active = 0
         	timeOfDay = 0
@@ -62,10 +64,12 @@ app.post('/webhook/', function (req, res) {
         else if(Boolean(active)){
         	switch(timeOfDay){
         		case 0:
+                    console.log('case 0')
         			sendTextMessage(sender, "Hello! How is your morning?")
         			timeOfDay = 1
         			break;
         		case 1:
+                    console.log('case 1')
         			morning = text
                     var parameters = {
                         text: text
@@ -85,6 +89,7 @@ app.post('/webhook/', function (req, res) {
         		break;
 
         		case 2:
+                    console.log('case 2')
         			afternoon = text
                     var parameters = {
                         text: text
@@ -105,6 +110,7 @@ app.post('/webhook/', function (req, res) {
         		break;
 
         		case 3:
+                    console.log('case3')
         			evening = text
                     var parameters = {
                         text: text
