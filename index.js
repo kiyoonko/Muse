@@ -47,6 +47,10 @@ app.post('/webhook/', function (req, res) {
     for (let i = 0; i < messaging_events.length; i++) {
       let event = req.body.entry[0].messaging[i]
       let sender = event.sender.id
+      if(event.postback){
+        authenticateSpotify();
+      }
+      else{
       if (event.message && event.message.text) {
         let text = event.message.text
         if (text === 'Hi MuseBot' && !Boolean(active)) {
@@ -133,6 +137,7 @@ app.post('/webhook/', function (req, res) {
         else{
 			       sendTextMessage(sender, "Please say 'Hi MuseBot' to get started.")
         }
+    }
       }
     }
     res.sendStatus(200)
@@ -190,7 +195,7 @@ function authenticateButton(sender){
                 "buttons": [{
                     "type": "postback",
                     "title": "Make Playlist",
-                    "payload": authenticateSpotify()
+                    "payload": "run_auth_spotify"
                 }]
             }
         }   
